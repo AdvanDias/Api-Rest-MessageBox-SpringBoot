@@ -2,6 +2,7 @@ package com.SpringBoot.Api.MessageBox.resources;
 
 import com.SpringBoot.Api.MessageBox.dto.request.PersonDTO;
 import com.SpringBoot.Api.MessageBox.dto.response.MessageResponseDTO;
+import com.SpringBoot.Api.MessageBox.exception.PersonNotFoundException;
 import com.SpringBoot.Api.MessageBox.services.PersoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,11 @@ public class PersonResource {
     @GetMapping
     public List<PersonDTO> listAll(){
         return persoService.listAll();
+    }
+
+    @GetMapping("/{id}")
+    public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException {
+        return persoService.findById(id);
     }
 
 }
