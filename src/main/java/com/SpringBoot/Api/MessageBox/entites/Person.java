@@ -1,5 +1,6 @@
 package com.SpringBoot.Api.MessageBox.entites;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,7 +27,8 @@ public class Person {
     private LocalDate data;
     private String text;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
-    private List<Visitor> visitorList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "person")
+    private List<Visitor> visitors;
 
 }

@@ -1,12 +1,16 @@
 package com.SpringBoot.Api.MessageBox.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Data
 @Builder
@@ -25,5 +29,8 @@ public class VisitorDTO {
     @NotEmpty
     @Size(min = 1, max = 10)
     private String point;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private PersonDTO person;
 
 }

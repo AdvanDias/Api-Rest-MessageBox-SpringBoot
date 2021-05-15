@@ -21,7 +21,7 @@ public class PersoService {
     private PersonRepository personRepository;
 
     private final PersonMapper personMapper = PersonMapper.INSTANCE;
-    
+
 
     public MessageResponseDTO creatPerson(PersonDTO personDTO){
         Person personToSave = personMapper.toModel(personDTO);
