@@ -4,6 +4,7 @@ import com.SpringBoot.Api.MessageBox.dto.request.PersonDTO;
 import com.SpringBoot.Api.MessageBox.dto.response.MessageResponseDTO;
 import com.SpringBoot.Api.MessageBox.exception.PersonNotFoundException;
 import com.SpringBoot.Api.MessageBox.services.PersoService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,14 +14,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/person")
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonResource {
 
     private PersoService persoService;
 
-    @Autowired
-    public PersonResource(PersoService persoService) {
-        this.persoService = persoService;
-    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
