@@ -1,6 +1,5 @@
 package com.SpringBoot.Api.MessageBox.resources;
 
-import com.SpringBoot.Api.MessageBox.dto.request.PersonDTO;
 import com.SpringBoot.Api.MessageBox.dto.request.VisitorDTO;
 import com.SpringBoot.Api.MessageBox.dto.response.MessageResponseDTO;
 import com.SpringBoot.Api.MessageBox.exception.PersonNotFoundException;
@@ -32,6 +31,21 @@ public class VisitorResource {
         return visitorService.listAll();
     }
 
+    @GetMapping("/{id}")
+    public VisitorDTO findById(@PathVariable Long id) throws PersonNotFoundException {
+        return visitorService.findById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletVisitor(@PathVariable Long id) throws PersonNotFoundException {
+        visitorService.deletVisitor(id);
+    }
+
+    @PutMapping("/{id}")
+    public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid VisitorDTO visitorDTO) throws  PersonNotFoundException {
+        return  visitorService.updateById(id,visitorDTO);
+    }
 
 
 }

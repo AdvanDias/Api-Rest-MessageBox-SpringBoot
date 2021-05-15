@@ -1,10 +1,8 @@
 package com.SpringBoot.Api.MessageBox.services;
 
 
-import com.SpringBoot.Api.MessageBox.dto.request.PersonDTO;
 import com.SpringBoot.Api.MessageBox.dto.request.VisitorDTO;
 import com.SpringBoot.Api.MessageBox.dto.response.MessageResponseDTO;
-import com.SpringBoot.Api.MessageBox.entites.Person;
 import com.SpringBoot.Api.MessageBox.entites.Visitor;
 import com.SpringBoot.Api.MessageBox.exception.PersonNotFoundException;
 import com.SpringBoot.Api.MessageBox.mapper.VisitorMapper;
@@ -39,7 +37,30 @@ public class VisitorService {
                 .collect(Collectors.toList());
     }
 
+    public VisitorDTO findById(Long id) throws PersonNotFoundException{
+        Visitor visitor = verifyIfExists(id);
+        return visitorMapper.toDTO(visitor);
+    }
 
+    public void deletVisitor(Long id) throws PersonNotFoundException {
+        Visitor visitor = verifyIfExists(id);
+        visitorRepository.deleteById(id);
+    }
+
+    public MessageResponseDTO updateById(Long id, VisitorDTO visitorDTO) throws PersonNotFoundException {
+        verifyIfExists(id);
+        Visitor visitorToUpdate = visitorMapper.toModel(visitorDTO);
+
+        Visitor updatedVisitor = visitorRepository.save(visitorToUpdate);
+        return createMessageResponse(updatedVisitor.getId(), "Update person with ID");
+    }
+
+
+
+    private Visitor verifyIfExists(Long id) throws PersonNotFoundException {
+        return visitorRepository.findById(id)
+                .orElseThrow(() -> new PersonNotFoundException(id));
+    }
 
 
 
