@@ -6,11 +6,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.List;
+
 
 @Data
 @Builder
@@ -21,13 +20,15 @@ public class VisitorDTO {
     private Long id;
 
     @NotEmpty
-    @Size(min = 2, max = 100)
+    @Size(min = 2, max = 100,message = "Name must be between 10 and 200 characters")
     private String name;
 
+    @NotEmpty
+    @Size(min = 10, max = 200, message = "The comment must be between 10 and 200 characters")
     private String comment;
 
     @NotEmpty
-    @Size(min = 1, max = 10)
+    @Max(value = 10,message = "The score cannot be greater than 10")
     private String point;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
