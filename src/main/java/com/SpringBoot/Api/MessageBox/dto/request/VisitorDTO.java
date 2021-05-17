@@ -29,7 +29,7 @@ public class VisitorDTO {
 
     @NotEmpty
     @Max(value = 10,message = "The score cannot be greater than 10")
-    private String point;
+    private int point;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private PersonDTO person;
