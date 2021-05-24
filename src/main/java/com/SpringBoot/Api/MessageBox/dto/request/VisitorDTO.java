@@ -27,7 +27,6 @@ public class VisitorDTO {
     @Size(min = 10, max = 200, message = "The comment must be between 10 and 200 characters")
     private String comment;
 
-    @NotEmpty
     @Max(value = 10,message = "The score cannot be greater than 10")
     private int point;
 

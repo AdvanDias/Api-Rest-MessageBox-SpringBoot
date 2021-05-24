@@ -34,4 +34,13 @@ public class AppConfiguration {
         return "DB connection to POSTGRESQL";
     }
 
+    @Profile("test")
+    @Bean
+    public String testAppConfiguration(){
+        System.out.println("DB connection for TEST");
+        System.out.println(driverClassName);
+        System.out.println(url);
+        return "DB connection to POSTGRESQL in TESTER";
+    }
+
 }
